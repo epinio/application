@@ -1,0 +1,15 @@
+domain: epinio.io
+layout:
+- go.kubebuilder.io/v3
+projectName: kubebuilder-example
+repo: github.com/epinio/application
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: epinio.io
+  group: application
+  kind: App
+  path: github.com/epinio/application/api/v1
+  version: v1
+version: "3"

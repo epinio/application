@@ -28,7 +28,7 @@ type AppSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Domains []string `json:"domains,omitempty"`
+	Routes []string `json:"routes,omitempty"`
 }
 
 // AppStatus defines the observed state of App

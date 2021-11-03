@@ -35,6 +35,11 @@ spec:
             type: object
           spec:
             description: AppSpec defines the desired state of App
+            properties:
+              routes:
+                items:
+                  type: string
+                type: array
             type: object
           status:
             description: AppStatus defines the observed state of App

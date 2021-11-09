@@ -28,7 +28,19 @@ type AppSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Routes []string `json:"routes,omitempty"`
+	Routes []string  `json:"routes,omitempty"`
+	Origin AppOrigin `json:"origin"`
+}
+
+type AppOrigin struct {
+	Path      *string        `json:"path,omitempty"`
+	Container *string        `json:"container,omitempty"`
+	Git       *AppRepository `json:"git,omitempty"`
+}
+
+type AppRepository struct {
+	Repository string  `json:"repository"`
+	Revision   *string `json:"revision,omitempty"`
 }
 
 // AppStatus defines the observed state of App

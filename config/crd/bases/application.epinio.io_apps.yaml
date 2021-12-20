@@ -36,6 +36,13 @@ spec:
           spec:
             description: AppSpec defines the desired state of App
             properties:
+              builderimage:
+                description: This field stores the builder image that was used when
+                  the application was last staged (from code). It can be empty if
+                  the application was never staged (e.g. pushed with container image).
+                  Epinio will use the builder image set by the user explicitly but
+                  if one is not set, it will try to use the previously set image.
+                type: string
               origin:
                 properties:
                   container:

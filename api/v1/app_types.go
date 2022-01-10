@@ -30,6 +30,18 @@ type AppSpec struct {
 
 	Routes []string  `json:"routes,omitempty"`
 	Origin AppOrigin `json:"origin"`
+	// This field stores the builder image that was used when the application
+	// was last staged (from code). It can be empty if the application was never
+	// staged (e.g. pushed with container image). Epinio will use the builder image
+	// set by the user explicitly but if one is not set, it will try to use the previously set image.
+	BuilderImage string `json:"builderimage,omitempty"`
+
+	// BlobUID stores the blob uid that was used when the application was last
+	// staged (from code). It can be empty if the application was never
+	// staged (e.g. pushed with container image). Epinio will use the value
+	// set by the user explicitly but if one is not set, it will try to use the
+	// previously set blobUID from the application CRD.
+	BlobUID string `json:"blobuid,omitempty"`
 }
 
 type AppOrigin struct {

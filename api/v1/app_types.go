@@ -42,6 +42,12 @@ type AppSpec struct {
 	// set by the user explicitly but if one is not set, it will try to use the
 	// previously set blobUID from the application CRD.
 	BlobUID string `json:"blobuid,omitempty"`
+
+	// StageID stores the id of the latest attempt to stage the
+	// application, regardless of outcome. This enables access to
+	// the staging logs of an application which never staged
+	// successfully.
+	StageID string `json:"stageid,omitempty"`
 }
 
 type AppOrigin struct {

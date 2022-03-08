@@ -21,7 +21,8 @@ import (
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
+// NOTE: json tags are required.  Any new fields you add must have json tags for the
+// fields to be serialized.
 
 // AppSpec defines the desired state of App
 type AppSpec struct {
@@ -30,17 +31,18 @@ type AppSpec struct {
 
 	Routes []string  `json:"routes,omitempty"`
 	Origin AppOrigin `json:"origin"`
-	// This field stores the builder image that was used when the application
-	// was last staged (from code). It can be empty if the application was never
-	// staged (e.g. pushed with container image). Epinio will use the builder image
-	// set by the user explicitly but if one is not set, it will try to use the previously set image.
+	// This field stores the builder image that was used when the application was last
+	// staged (from code). It can be empty if the application was never staged
+	// (e.g. pushed with container image). Epinio will use the builder image set by
+	// the user explicitly but if one is not set, it will try to use the previously
+	// set image.
 	BuilderImage string `json:"builderimage,omitempty"`
 
-	// BlobUID stores the blob uid that was used when the application was last
-	// staged (from code). It can be empty if the application was never
-	// staged (e.g. pushed with container image). Epinio will use the value
-	// set by the user explicitly but if one is not set, it will try to use the
-	// previously set blobUID from the application CRD.
+	// BlobUID stores the blob uid that was used when the application was last staged
+	// (from code). It can be empty if the application was never staged (e.g. pushed
+	// with container image). Epinio will use the value set by the user explicitly but
+	// if one is not set, it will try to use the previously set blobUID from the
+	// application CRD.
 	BlobUID string `json:"blobuid,omitempty"`
 
 	// StageID stores the id of the latest attempt to stage the
@@ -48,6 +50,10 @@ type AppSpec struct {
 	// the staging logs of an application which never staged
 	// successfully.
 	StageID string `json:"stageid,omitempty"`
+
+	// ImageURL stores the image reference of the currently running application. This
+	// is set on deployment, for use in updates.
+	ImageURL string `json:"imageurl,omitempty"`
 }
 
 type AppOrigin struct {

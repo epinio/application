@@ -1,0 +1,16 @@
+apiVersion: application.epinio.io/v1
+kind: Service
+metadata:
+  name: service-sample
+spec:
+  name: service-sample
+  shortDescription: |
+    A simple description of this service.
+  description: |
+    A longer description of the same service. This will be used when describing
+    this service.
+  chart: bitnami/postgresql
+  helmRepo:
+    name: bitnami
+    url: "https://charts.bitnami.com/bitnami"
+  values: values

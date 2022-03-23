@@ -12,4 +12,13 @@ resources:
   kind: App
   path: github.com/epinio/application/api/v1
   version: v1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: epinio.io
+  group: application
+  kind: Service
+  path: github.com/epinio/application/api/v1
+  version: v1
 version: "3"

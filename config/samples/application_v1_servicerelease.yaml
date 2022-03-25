@@ -1,0 +1,7 @@
+apiVersion: application.epinio.io/v1
+kind: ServiceRelease
+metadata:
+  name: servicerelease-sample
+spec:
+  name: myservicerelease
+  namespace: workspace

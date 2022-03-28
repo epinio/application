@@ -34,6 +34,9 @@ type ServiceSpec struct {
 	// Description of the service (i.e.: redis to be used for development)
 	Description string `json:"description,omitempty"`
 
+	// LongDescription is a detailed description of the service
+	LongDescription string `json:"longDescription,omitempty"`
+
 	// HelmRepo is the Helm repository where to fetch the helm chart
 	HelmRepo HelmRepo `json:"helmRepo,omitempty"`
 	// HelmChart is the name of the Helm chart used to deploy the service

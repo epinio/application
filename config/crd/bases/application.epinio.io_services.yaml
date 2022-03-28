@@ -53,6 +53,9 @@ spec:
                   url:
                     type: string
                 type: object
+              longDescription:
+                description: LongDescription is a detailed description of the service
+                type: string
               name:
                 description: Name of the service (i.e. redis-small)
                 type: string

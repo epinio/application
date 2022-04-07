@@ -1,0 +1,24 @@
+# permissions for end users to edit appcharts.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: appchart-editor-role
+rules:
+- apiGroups:
+  - application.epinio.io
+  resources:
+  - appcharts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - application.epinio.io
+  resources:
+  - appcharts/status
+  verbs:
+  - get

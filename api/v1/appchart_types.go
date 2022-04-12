@@ -28,35 +28,19 @@ type AppChartSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// This is similar to the ServiceSpec. Main difference is that this does
-	// not support custom values.
-
-	// Name of the app support chart (i.e. standard)
-	Name string `json:"name,omitempty"`
-
-	// ShortDescription of the chart to be used in lists
+	// ShortDescription of the chart. To be used in list displays
 	ShortDescription string `json:"shortDescription,omitempty"`
 
-	// Description of the chart, long form for detailed display
+	// Description of the chart. Long form to be used in detailed displays
 	Description string `json:"description,omitempty"`
 
-	// HelmRepo is the Helm repository where to fetch the helm chart. This
-	// can be empty. In that case the HelmChart field has to reference the
-	// chart as full URL instead of as a simple name.
-	HelmRepo AppHelmRepo `json:"helmRepo,omitempty"`
+	// HelmRepo is the URL to the Helm repository where to fetch the helm
+	// chart. This can be empty. In that case the HelmChart field has to
+	// reference the chart as full URL instead of as a simple name.
+	HelmRepo string `json:"helmRepo,omitempty"`
 
-	// HelmChart is the name of the Helm chart used to deploy the service
-	HelmChart string `json:"chart,omitempty"`
-}
-
-// AppHelmRepo is the Helm repository where to fetch the app helm chart
-type AppHelmRepo struct {
-	Name string `json:"name,omitempty"`
-	URL  string `json:"url,omitempty"`
-
-	// See service_types.go for a structurally identical definition
-	// (HelmRepo) we cannot reuse, lest the code generator fails to create
-	// the necessary DeepCopy support.
+	// HelmChart is the name of the Helm chart used to deploy an application.
+	HelmChart string `json:"helmChart,omitempty"`
 }
 
 // AppChartStatus defines the observed state of AppChart

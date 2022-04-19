@@ -11,7 +11,6 @@ This project was created with [kubebuilder](https://github.com/kubernetes-sigs/k
 do some heavy work (e.g. create a controller etc). The simplest thing you may want to do is to add some field to the `AppSpec` struct in [app_types.go](api/v1/app_types.go).
 
 After you do so, you will have to generate the CRD yaml to be used in Epinio.
-And possibly the C code as well.
 
 You can do that with a single command:
 

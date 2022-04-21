@@ -1,0 +1,6 @@
+apiVersion: application.epinio.io/v1
+kind: AppChart
+metadata:
+  name: appchart-sample
+spec:
+  # TODO(user): Add fields here

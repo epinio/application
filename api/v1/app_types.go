@@ -54,6 +54,12 @@ type AppSpec struct {
 	// ImageURL stores the image reference of the currently running application. This
 	// is set on deployment, for use in updates.
 	ImageURL string `json:"imageurl,omitempty"`
+
+	// ChartName stores the name of the application support chart
+	// used to deploy the currently running application. This is
+	// set on deployment, for use in updates. The name references
+	// an epinio AppCharts resource.
+	ChartName string `json:"chartname,omitempty"`
 }
 
 type AppOrigin struct {

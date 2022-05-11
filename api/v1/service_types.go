@@ -42,6 +42,11 @@ type ServiceSpec struct {
 	// HelmChart is the name of the Helm chart used to deploy the service
 	HelmChart string `json:"chart,omitempty"`
 
+	// ChartVersion is the version of the Helm chart used to deploy the service
+	ChartVersion string `json:"chartVersion,omitempty"`
+	// AppVersion is the version of the service deployed by the referenced chart
+	AppVersion string `json:"appVersion,omitempty"`
+
 	// Values are the values provided by the operator.
 	// They are used to customize the deployment of the service.
 	Values string `json:"values,omitempty"`

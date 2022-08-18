@@ -1,5 +1,5 @@
 /* -*- fill-column: 80 -*-
-Copyright 2021.
+Copyright 2021-2022.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,12 +41,51 @@ type AppChartSpec struct {
 
 	// HelmChart is the name of the Helm chart used to deploy an application.
 	HelmChart string `json:"helmChart,omitempty"`
+
+	// Values provides settings, i.e. field names and values to customize
+	// the referenced helm chart when deploying an application with this app
+	// chart. Note that user-configurable settings are declared with
+	// `Settings` instead. While nothing checks against exposing a field set
+	// here to the user this is strongly discouraged, to avoid confusion.
+	Values map[string]string `json:"values,omitempty"`
+
+	// Settings declares the fields underneath `userValues` the user is
+	// allowed to customize when deploying an application with the helm
+	// chart referenced by this app chart.
+	Settings map[string]AppChartSetting `json:"settings,omitempty"`
+
+	// To expand and clarify the above a bit more:
+	//
+	// - Values is the app chart configuring the helm chart. This enables the
+	//   creation of multiple app charts based on the same helm chart, as
+	//   predefined setups the user can select from.
+	//
+	// - Settings is telling the client(s) which config fields of the helm
+	//   chart the user is allowed to change. I.e. the knobs the user has to
+	//   tune the deployment with the given app chart.
 }
 
 // AppChartStatus defines the observed state of AppChart
 type AppChartStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+}
+
+type AppChartSetting struct {
+	// Type of the setting (string, bool, number, or integer)
+	Type string `json:"type"`
+
+	// Minimal allowed value, for number, integer
+	Minimum string `json:"minimum,omitempty"`
+
+	// Maximal allowed value, for number, integer
+	Maximum string `json:"maximum,omitempty"`
+
+	// Enumeration of allowed values, for types string, number, integer
+	Enum []string `json:"enum,omitempty"`
+
+	// Presence of an enum for number and integer overrides the min/max
+	// specifications
 }
 
 //+kubebuilder:object:root=true

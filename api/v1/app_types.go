@@ -1,4 +1,4 @@
-/*
+/* -*- fill-column: 90 -*-
 Copyright 2021.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,21 +45,23 @@ type AppSpec struct {
 	// application CRD.
 	BlobUID string `json:"blobuid,omitempty"`
 
-	// StageID stores the id of the latest attempt to stage the
-	// application, regardless of outcome. This enables access to
-	// the staging logs of an application which never staged
-	// successfully.
+	// StageID stores the id of the latest attempt to stage the application,
+	// regardless of outcome. This enables access to the staging logs of an
+	// application which never staged successfully.
 	StageID string `json:"stageid,omitempty"`
 
 	// ImageURL stores the image reference of the currently running application. This
 	// is set on deployment, for use in updates.
 	ImageURL string `json:"imageurl,omitempty"`
 
-	// ChartName stores the name of the application support chart
-	// used to deploy the currently running application. This is
-	// set on deployment, for use in updates. The name references
-	// an epinio AppCharts resource.
+	// ChartName stores the name of the application support chart used to deploy the
+	// currently running application. This is set on deployment, for use in
+	// updates. The name references an epinio AppCharts resource.
 	ChartName string `json:"chartname,omitempty"`
+
+	// Settings stores the fields and values set by the user to configure the
+	// application chart. See ChartName.
+	Settings map[string]string `json:"settings,omitempty"`
 }
 
 type AppOrigin struct {

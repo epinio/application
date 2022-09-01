@@ -56,13 +56,15 @@ type AppChartSpec struct {
 
 	// To expand and clarify the above a bit more:
 	//
-	// - Values is the app chart configuring the helm chart. This enables the
-	//   creation of multiple app charts based on the same helm chart, as
-	//   predefined setups the user can select from.
+	// - Values is the app chart configuring the helm chart. This enables
+	//   the operator to create multiple app charts based on the same helm
+	//   chart, as predefined setups the application developer can then
+	//   select from.
 	//
 	// - Settings is telling the client(s) which config fields of the helm
-	//   chart the user is allowed to change. I.e. the knobs the user has to
-	//   tune the deployment with the given app chart.
+	//   chart the application developer is allowed to change. I.e. the
+	//   knobs available to the application developer to tune the deployment
+	//   with the given app chart.
 }
 
 // AppChartStatus defines the observed state of AppChart

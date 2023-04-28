@@ -68,11 +68,14 @@ type AppOrigin struct {
 	Path      *string        `json:"path,omitempty"`
 	Container *string        `json:"container,omitempty"`
 	Git       *AppRepository `json:"git,omitempty"`
+	Archive   bool           `json:"archive,omitempty"`
 }
 
 type AppRepository struct {
 	Repository string  `json:"repository"`
 	Revision   *string `json:"revision,omitempty"`
+	Provider   *string `json:"provider,omitempty"`
+	Branch     *string `json:"branch,omitempty"`
 }
 
 // AppStatus defines the observed state of App

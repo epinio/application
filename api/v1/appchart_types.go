@@ -73,6 +73,7 @@ type AppChartStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
+// Same as ServiceSetting
 type AppChartSetting struct {
 	// Type of the setting (string, bool, number, or integer)
 	Type string `json:"type"`

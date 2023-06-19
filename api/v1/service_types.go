@@ -55,6 +55,39 @@ type ServiceSpec struct {
 
 	// ServiceIcon is an image associated with this service
 	ServiceIcon string `json:"serviceIcon,omitempty"`
+
+	// Settings declares the fields the user is allowed to customize when deploying
+	// a service with the helm chart referenced by this service class.
+	Settings map[string]ServiceSetting `json:"settings,omitempty"`
+
+	// To expand and clarify the above a bit more:
+	//
+	// - `Values` is the service class configuring the helm chart. This enables the operator to
+	//   create multiple service classes based on the same helm chart, as predefined setups the
+	//   application developer can then select from.
+	//
+	// - `Settings` is telling the client(s) which fields of the helm chart the application
+	//   developer is allowed to change. I.e. the knobs available to the application developer
+	//   to tune the deployment of a service instance with the given service class.
+	//
+	// ATTENTION: In contrast to application charts the service classes have no real control
+	// over the helm charts they are working with.
+	//
+	// Application charts can properly separate operator values from user values, with their API
+	// to the helm charts to use under the control of the Epinio developers. IOW Epinio
+	// specifies the rules a helmchart to use in an application chart to follow.
+	//
+	// Service classes cannot do this. The helm charts providing service instances on deployment
+	// are in control. Epinio's service classes have to adapt.
+	//
+	// For `Settings` this means that the string keys are __not__ simple map element names used
+	// in a specific and known field of `.Values` (`.Values.userValues` for apps).
+	//
+	// They are complex path specs as seen by helm `--set` options.
+	//
+	// And they naturally can overlap with whatever is specified by `Values`. Due to this a
+	// resolution order is specified: User settings have priority, i.e. are applied after
+	// operator `Values`, and can override them.
 }
 
 // HelmRepo is the Helm repository where to fetch the helm chart
@@ -67,6 +100,24 @@ type HelmRepo struct {
 type ServiceStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+}
+
+// Same as AppChartSetting
+type ServiceSetting struct {
+	// Type of the setting (string, bool, number, or integer)
+	Type string `json:"type"`
+
+	// Minimal allowed value, for number, integer
+	Minimum string `json:"minimum,omitempty"`
+
+	// Maximal allowed value, for number, integer
+	Maximum string `json:"maximum,omitempty"`
+
+	// Enumeration of allowed values, for types string, number, integer
+	Enum []string `json:"enum,omitempty"`
+
+	// Presence of an enum for number and integer overrides the min/max
+	// specifications
 }
 
 //+kubebuilder:object:root=true

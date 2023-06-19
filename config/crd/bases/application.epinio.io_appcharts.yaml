@@ -51,6 +51,7 @@ spec:
                 type: string
               settings:
                 additionalProperties:
+                  description: Same as ServiceSetting
                   properties:
                     enum:
                       description: Enumeration of allowed values, for types string,

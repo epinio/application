@@ -96,7 +96,7 @@ type ChartSetting struct {
 // AppChartSetting is an older name for ChartSetting. Created to keep backward
 // compatibility. Should also reduce misunderstandings of what kind of settings
 // are handled in a particular context.
-type AppChartSetting ChartSetting
+type AppChartSetting = ChartSetting
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

@@ -108,7 +108,7 @@ type ServiceStatus struct {
 
 // ServiceSetting is an alias to ChartSetting. Should reduce misunderstandings
 // of what kind of settings are handled in a particular context.
-type ServiceSetting ChartSetting
+type ServiceSetting = ChartSetting
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

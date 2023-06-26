@@ -58,7 +58,7 @@ type ServiceSpec struct {
 
 	// Settings declares the fields the user is allowed to customize when deploying
 	// a service with the helm chart referenced by this service class.
-	Settings map[string]ServiceSetting `json:"settings,omitempty"`
+	Settings map[string]ChartSetting `json:"settings,omitempty"`
 
 	// To expand and clarify the above a bit more:
 	//
@@ -105,10 +105,6 @@ type ServiceStatus struct {
 }
 
 // The `ChartSetting` type is defined in sibling file `appchart_types.go`.
-
-// ServiceSetting is an alias to ChartSetting. Should reduce misunderstandings
-// of what kind of settings are handled in a particular context.
-type ServiceSetting = ChartSetting
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

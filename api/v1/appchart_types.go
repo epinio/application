@@ -52,7 +52,7 @@ type AppChartSpec struct {
 	// Settings declares the fields underneath `userValues` the user is
 	// allowed to customize when deploying an application with the helm
 	// chart referenced by this app chart.
-	Settings map[string]AppChartSetting `json:"settings,omitempty"`
+	Settings map[string]ChartSetting `json:"settings,omitempty"`
 
 	// To expand and clarify the above a bit more:
 	//
@@ -92,11 +92,6 @@ type ChartSetting struct {
 	// Presence of an enum for number and integer overrides the min/max
 	// specifications
 }
-
-// AppChartSetting is an older name for ChartSetting. Created to keep backward
-// compatibility. Should also reduce misunderstandings of what kind of settings
-// are handled in a particular context.
-type AppChartSetting = ChartSetting
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

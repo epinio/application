@@ -73,8 +73,10 @@ type AppChartStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-// Same as ServiceSetting
-type AppChartSetting struct {
+// ChartSetting specifies a single setting applicable to a helm chart. This can
+// be for an application chart (as defined in this file), or for service helm
+// chart (See sibling file `service_types.go`).
+type ChartSetting struct {
 	// Type of the setting (string, bool, number, or integer)
 	Type string `json:"type"`
 
@@ -90,6 +92,11 @@ type AppChartSetting struct {
 	// Presence of an enum for number and integer overrides the min/max
 	// specifications
 }
+
+// AppChartSetting is an older name for ChartSetting. Created to keep backward
+// compatibility. Should also reduce misunderstandings of what kind of settings
+// are handled in a particular context.
+type AppChartSetting ChartSetting
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

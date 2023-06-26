@@ -75,7 +75,7 @@ type ServiceSpec struct {
 	//
 	// Application charts can properly separate operator values from user values, with their API
 	// to the helm charts to use under the control of the Epinio developers. IOW Epinio
-	// specifies the rules a helmchart to use in an application chart to follow.
+	// specifies the rules a helmchart to be used in an application chart has to follow.
 	//
 	// Service classes cannot do this. The helm charts providing service instances on deployment
 	// are in control. Epinio's service classes have to adapt.
@@ -86,8 +86,10 @@ type ServiceSpec struct {
 	// They are complex path specs as seen by helm `--set` options.
 	//
 	// And they naturally can overlap with whatever is specified by `Values`. Due to this a
-	// resolution order is specified: User settings have priority, i.e. are applied after
-	// operator `Values`, and can override them.
+	// resolution order is specified: System settings in field `Values` have priority over the
+	// user `Settings`. This is necessary because the system settings are expected to contain
+	// things which make the helm chart work within the Epinio context, and we cannot have users
+	// break such.
 }
 
 // HelmRepo is the Helm repository where to fetch the helm chart
@@ -102,23 +104,11 @@ type ServiceStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-// Same as AppChartSetting
-type ServiceSetting struct {
-	// Type of the setting (string, bool, number, or integer)
-	Type string `json:"type"`
+// The `ChartSetting` type is defined in sibling file `appchart_types.go`.
 
-	// Minimal allowed value, for number, integer
-	Minimum string `json:"minimum,omitempty"`
-
-	// Maximal allowed value, for number, integer
-	Maximum string `json:"maximum,omitempty"`
-
-	// Enumeration of allowed values, for types string, number, integer
-	Enum []string `json:"enum,omitempty"`
-
-	// Presence of an enum for number and integer overrides the min/max
-	// specifications
-}
+// ServiceSetting is an alias to ChartSetting. Should reduce misunderstandings
+// of what kind of settings are handled in a particular context.
+type ServiceSetting ChartSetting
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status

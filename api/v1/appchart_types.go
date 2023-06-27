@@ -52,7 +52,7 @@ type AppChartSpec struct {
 	// Settings declares the fields underneath `userValues` the user is
 	// allowed to customize when deploying an application with the helm
 	// chart referenced by this app chart.
-	Settings map[string]AppChartSetting `json:"settings,omitempty"`
+	Settings map[string]ChartSetting `json:"settings,omitempty"`
 
 	// To expand and clarify the above a bit more:
 	//
@@ -73,7 +73,10 @@ type AppChartStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-type AppChartSetting struct {
+// ChartSetting specifies a single setting applicable to a helm chart. This can
+// be for an application chart (as defined in this file), or for service helm
+// chart (See sibling file `service_types.go`).
+type ChartSetting struct {
 	// Type of the setting (string, bool, number, or integer)
 	Type string `json:"type"`
 

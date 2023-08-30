@@ -58,7 +58,7 @@ type ServiceSpec struct {
 
 	// Settings declares the fields the user is allowed to customize when deploying
 	// a service with the helm chart referenced by this service class.
-	Settings map[string]ChartSetting `json:"settings,omitempty"`
+	Settings map[string]ServiceSetting `json:"settings,omitempty"`
 
 	// To expand and clarify the above a bit more:
 	//
@@ -91,6 +91,10 @@ type ServiceSpec struct {
 	// things which make the helm chart work within the Epinio context, and we cannot have users
 	// break such.
 }
+
+// ServiceSetting is an alias to ChartSetting.
+// Should reduce misunderstandings of what kind of settings are handled in a particular context.
+type ServiceSetting ChartSetting
 
 // HelmRepo is the Helm repository where to fetch the helm chart
 type HelmRepo struct {

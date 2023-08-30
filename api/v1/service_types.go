@@ -94,8 +94,9 @@ type ServiceSpec struct {
 
 // HelmRepo is the Helm repository where to fetch the helm chart
 type HelmRepo struct {
-	Name string `json:"name,omitempty"`
-	URL  string `json:"url,omitempty"`
+	Name   string `json:"name,omitempty"`
+	URL    string `json:"url,omitempty"`
+	Secret string `json:"secret,omitempty"`
 }
 
 // ServiceStatus defines the observed state of Service
